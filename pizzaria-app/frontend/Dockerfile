@@ -12,7 +12,7 @@ RUN echo 'server { \
         try_files $uri $uri/ /index.html; \
     } \
     location /api { \
-        proxy_pass http://backend:5000; \
+        proxy_pass http://pizzaria-backend:5000; \
         proxy_set_header Host $host; \
         proxy_set_header X-Real-IP $remote_addr; \
     } \
