@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pizzaria-backend
+    volumes:
+      - backend_data:/app
+    networks:
+      - pizzaria-net
+    expose:
+      - "5001"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pizzaria-frontend
+    networks:
+      - pizzaria-net
+    expose:
+      - "8080"
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: pizzaria-nginx
+    ports:
+      - "8080:80"
+      - "5001:5001"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - pizzaria-net
+
+volumes:
+  backend_data:
+
+networks:
+  pizzaria-net:
+    driver: bridge
