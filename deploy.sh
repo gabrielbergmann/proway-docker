@@ -126,7 +126,7 @@ ensure_running() {
 install_cron() {
   if [ ! -f "$CRON_FILE" ]; then
     log "Instalando cron (*/5 min) em $CRON_FILE ..."
-    echo "*/5 * * * * root $BASE_DIR/deploy.sh >> $LOG_FILE 2>&1" > "$CRON_FILE"
+    echo "*/5 * * * * root $APP_DIR/deploy.sh >> $LOG_FILE 2>&1" > "$CRON_FILE"
     chmod 644 "$CRON_FILE"
     systemctl restart cron || service cron restart || true
   fi
