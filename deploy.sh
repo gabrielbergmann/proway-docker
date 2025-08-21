@@ -161,9 +161,6 @@ main() {
   install_cron
   log "Concluído. Logs: $LOG_FILE"
   log "Lista de serviços executando --------------------------------"
-  exec docker ps
-  log "Lista de cronjobs -------------------------"
-  exec crontab -l
 }
 
 main "$@"
